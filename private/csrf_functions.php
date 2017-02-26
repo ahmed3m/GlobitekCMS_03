@@ -17,7 +17,7 @@
   // Returns HTML for a hidden form input with a CSRF token as the value
   function csrf_token_tag() {
     $token = create_csrf_token();
-    return '<input type="hidden" name="csrf_token" value="' . $token .'" />';
+    return '<input type="hidden" name="csrf_token" value="' . $token . '" />';
   }
 
   // Returns true if form token matches session token, false if not.
