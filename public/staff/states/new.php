@@ -15,17 +15,21 @@ $state = array(
 );
 
 if(is_post_request()) {
+  // Confirm that the referer is from the same domain as the host and that the csrf tokens match
+  if(request_is_same_domain() && csrf_token_is_valid()) {
+    // Confirm that values are present before accessing them.
+    if(isset($_POST['name'])) { $state['name'] = $_POST['name']; }
+    if(isset($_POST['code'])) { $state['code'] = $_POST['code']; }
 
-  // Confirm that values are present before accessing them.
-  if(isset($_POST['name'])) { $state['name'] = $_POST['name']; }
-  if(isset($_POST['code'])) { $state['code'] = $_POST['code']; }
-
-  $result = insert_state($state);
-  if($result === true) {
-    $new_id = db_insert_id($db);
-    redirect_to('show.php?id=' . $new_id);
+    $result = insert_state($state);
+    if($result === true) {
+      $new_id = db_insert_id($db);
+      redirect_to('show.php?id=' . $new_id);
+    } else {
+      $errors = $result;
+    }
   } else {
-    $errors = $result;
+    $errors[] = "Error: invalid request";
   }
 }
 ?>
@@ -45,6 +49,7 @@ if(is_post_request()) {
     Code:<br />
     <input type="text" name="code" value="<?php echo h($state['code']); ?>" /><br />
     <br />
+    <?php echo csrf_token_tag(); ?>
     <input type="submit" name="submit" value="Create"  />
   </form>
 
