@@ -48,9 +48,9 @@ The following **required** functionality is completed:
 
 The following advanced user stories are optional:
 
-* [ ]  Bonus Objective 1: Identify security flaw in Objective #4 (requiring login on staff pages)
-  * [ ]  Identify the security principal not being followed.
-  * [ ]  Write a short description of how the code could be modified to be more secure.
+* [X]  Bonus Objective 1: Identify security flaw in Objective #4 (requiring login on staff pages)
+  * [X]  Identify the security principal not being followed.
+  * [X]  Write a short description of how the code could be modified to be more secure.
 
 * [ ] Bonus Objective 2: Add CSRF protections to all forms in the staff directory
 
@@ -75,7 +75,9 @@ GIF created with [LiceCap](http://www.cockos.com/licecap/).
 
 ## Notes
 
-Describe any challenges encountered while building the app.
+For the login page, the security principle of security through obscurity was tested as there were two cases for login errors. One was if the user enters a correct username but wrong password, and the other case was if the user enters a username that doesn't exist. The error message I provided was "Incorrect username and/or password." in order to avoid the hacker from knowing whether such a username exists or not.
+
+We also used a function called require_login for each staff page. While that's a great mechanism for defense but I don't think it should be the only way we could rely on defending the system as this is defying the principle of defense in depth. If a hacker already logs in then they can access or change vital information. One way to add layers of defense is to require the logged in user to input their password again when making a big change like deleting or editing existing data.
 
 ## License
 
