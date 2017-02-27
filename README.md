@@ -1,6 +1,6 @@
 # Project 4 - Forgery, Theft, and Hijacking Prevention
 
-Time spent: **4** hours spent in total
+Time spent: **6** hours spent in total
 
 ## User Stories
 
@@ -52,11 +52,11 @@ The following advanced user stories are optional:
   * [X]  Identify the security principal not being followed.
   * [X]  Write a short description of how the code could be modified to be more secure.
 
-* [ ] Bonus Objective 2: Add CSRF protections to all forms in the staff directory
+* [X] Bonus Objective 2: Add CSRF protections to all forms in the staff directory
 
-* [ ]  Bonus Objective 3: CSRF tokens only valid for 10 minutes.
+* [X]  Bonus Objective 3: CSRF tokens only valid for 10 minutes.
 
-* [ ]  Bonus Objective 4: Sessions are valid only if user-agent string matches previous value.
+* [X]  Bonus Objective 4: Sessions are valid only if user-agent string matches previous value.
 
 * [ ]  Advanced Objective: Set/Get Signed-Encrypted Cookie
   * [ ]  Create "public/set\_secret\_cookie.php".
@@ -69,7 +69,7 @@ The following advanced user stories are optional:
 
 Here's a walkthrough of implemented user stories:
 
-<img src='http://i.imgur.com/link/to/your/gif/file.gif' title='Video Walkthrough' width='' alt='Video Walkthrough' />
+<img src='http://i.imgur.com/Istvoxo.gif' title='Video Walkthrough' width='' alt='Video Walkthrough' />
 
 GIF created with [LiceCap](http://www.cockos.com/licecap/).
 
