@@ -13,16 +13,20 @@ $territory = db_fetch_assoc($territories_result);
 $errors = array();
 
 if(is_post_request()) {
+  // Confirm that the referer is from the same domain as the host and that the csrf tokens match
+  if(request_is_same_domain() && csrf_token_is_valid()) {
+    // Confirm that values are present before accessing them.
+    if(isset($_POST['name'])) { $territory['name'] = $_POST['name']; }
+    if(isset($_POST['position'])) { $territory['position'] = $_POST['position']; }
 
-  // Confirm that values are present before accessing them.
-  if(isset($_POST['name'])) { $territory['name'] = $_POST['name']; }
-  if(isset($_POST['position'])) { $territory['position'] = $_POST['position']; }
-
-  $result = update_territory($territory);
-  if($result === true) {
-    redirect_to('show.php?id=' . $territory['id']);
+    $result = update_territory($territory);
+    if($result === true) {
+      redirect_to('show.php?id=' . $territory['id']);
+    } else {
+      $errors = $result;
+    }
   } else {
-    $errors = $result;
+    $errors[] = "Error: invalid request";
   }
 }
 ?>
@@ -41,6 +45,7 @@ if(is_post_request()) {
     <input type="text" name="name" value="<?php echo h($territory['name']); ?>" /><br />
     Position:<br />
     <input type="text" name="position" value="<?php echo h($territory['position']); ?>" /><br />
+    <?php echo csrf_token_tag(); ?>
     <br />
     <input type="submit" name="submit" value="Update"  />
   </form>
