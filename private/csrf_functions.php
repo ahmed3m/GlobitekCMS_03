@@ -24,14 +24,16 @@
   function csrf_token_is_valid() {
     if(!isset($_POST['csrf_token'])) { return false; }
     if(!isset($_SESSION['csrf_token'])) { return false; }
+    if(!csrf_token_is_recent()) { return false; }
     return ($_POST['csrf_token'] === $_SESSION['csrf_token']);
   }
 
   // Determines if the form token should be considered "recent"
   // by comparing it to the time a token was last generated.
   function csrf_token_is_recent() {
-    // TODO add code to determine if csrf token is recent
-    return true;
+    $limit = 60*10; // 10 minutes
+    if(!isset($_SESSION['csrf_token_time'])) { return false; }
+    return ($_SESSION['csrf_token_time'] + $limit) >= time();
   }
 
 ?>
